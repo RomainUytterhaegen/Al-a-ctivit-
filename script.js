@@ -9,12 +9,19 @@ var bgcolors = ["red","green","blue","purple"];
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 var personnages = [
-   "Hulk ",
-   "Shrek ",
-   "Un astronaute ",
-   "Un sportif de haut niveau ",
-   "Harry Potter ",
-   "Voldemort "
+   "Hulk",
+   "Shrek",
+   "Un astronaute",
+   "Un sportif de haut niveau",
+   "Harry Potter",
+   "Voldemort",
+   "Un apiculteur",
+   "Un plombier",
+   "Un chevalier",
+   "Un étudiant",
+   "Un extra-terrestre",
+   "Un enfant",
+   "Un concierge"
 ]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,11 +29,17 @@ var personnages = [
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 var actions = [
-   "mange ",
-   "danse ",
-   "cuisine ",
-   "dessine ",
-   "se bat "
+   "mange",
+   "danse",
+   "cuisine",
+   "dessine",
+   "se bat",
+   "tonds la pelouse",
+   "répare une horloge",
+   "aiguise une épée",
+   "désamorce une bombe",
+   "cueille une pomme",
+   "nettoie une table"
 ]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,14 +47,52 @@ var actions = [
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 var lieux = [
-   "dans un supermarché." ,
-   "dans un bar.",
-   "sur la lune.",
-   "dans un parc.",
-   "au commissariat de police.",
-   "à l'école.",
-   "sur la plage.",
-   "dans une voiture."
+   "dans un supermarché" ,
+   "dans un bar",
+   "sur la lune",
+   "dans un parc",
+   "au commissariat de police",
+   "à l'école",
+   "sur la plage",
+   "dans une voiture",
+   "sur un bateau",
+   "dans une prairie",
+   "dans une caravane",
+   "dans une grotte",
+   "dans un sous-marin",
+   "sur des montagnes russes",
+   "sur une voie de chemin de fer",
+   "dans une auberge de jeunesse",
+   "dans la jungle",
+   "dans un musée",
+   "dans un restauration",
+   "dans une piscine municipale"
+]
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////Evenement//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+var evenements = [
+   "pendant la canicule",
+   "pendant une chute de météorites",
+   "pendant une fouille archéologique",
+   "pendant une fuite d'eau",
+   "pendant une tempête",
+   "pendant une coupure de courant"
+]
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////Sentiment/////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+var sentiments = [
+   "joyeux",
+   "anxieux",
+   "timide",
+   "dépressif",
+   "en colère",
+   "rêveur"
 ]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +127,16 @@ function action()
    return actions[Math.floor(Math.random() * actions.length)];
 }
 
+function evenement()
+{
+   return evenements[Math.floor(Math.random() * evenements.length)];
+}
+
+function sentiment()
+{
+   return sentiments[Math.floor(Math.random() * sentiments.length)];
+}
+
 function changeResult(text)
 {
    document.getElementById("result").innerHTML = text;
@@ -92,16 +153,32 @@ document.addEventListener('click', function (event) {
       changeResult(lieu());
    }
 
+   if(event.target.matches("#e")){
+      changeResult(evenement());
+   }
+
+   if(event.target.matches("#s")){
+      changeResult(sentiment());
+   }
+
    if(event.target.matches("#pl")){
-      changeResult(personnage()+lieu());
+      changeResult(personnage()+" "+lieu()+".");
+   }
+
+   if(event.target.matches("#ple")){
+      changeResult(personnage()+" "+lieu()+" "+evenement()+".");
    }
 
    if(event.target.matches("#pa")){
-      changeResult(personnage()+"qui "+action());
+      changeResult(personnage()+" qui "+action()+".");
    }
 
    if(event.target.matches("#pal")){
-      changeResult(personnage()+action()+lieu());
+      changeResult(personnage()+" "+action()+" "+lieu()+".");
+   }
+
+   if(event.target.matches("#pale")){
+      changeResult(personnage()+" "+action()+" "+lieu()+" "+evenement()+".");
    }
 
 }, false);
