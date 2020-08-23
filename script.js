@@ -11,6 +11,10 @@ var bgcolors = ["red","green","blue","purple"];
 var personnages = [
    "Hulk",
    "Shrek",
+   "Superman",
+   "Wonder Woman",
+   "Spiderman",
+   "Un savant fou",
    "Un astronaute",
    "Un sportif de haut niveau",
    "Harry Potter",
@@ -21,7 +25,11 @@ var personnages = [
    "Un étudiant",
    "Un extra-terrestre",
    "Un enfant",
-   "Un concierge"
+   "Un concierge",
+   "Une personne âgée",
+   "Un bébé",
+   "Un nain",
+   "Une fée"
 ]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +47,10 @@ var actions = [
    "aiguise une épée",
    "désamorce une bombe",
    "cueille une pomme",
-   "nettoie une table"
+   "nettoie une table",
+   "fait les courses",
+   "joue au cartes",
+   "fait du jardinage"
 ]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,10 +113,8 @@ var sentiments = [
 // Au chargement de la page
 window.onload = function()
  {
-    document.body.style.backgroundColor = bgcolors[Math.floor(Math.random() * bgcolors.length)]; //change couleur de fond alétoire.
+   //document.body.style.backgroundColor = bgcolors[Math.floor(Math.random() * bgcolors.length)]; //change couleur de fond alétoire.
     
-    //console.log(actions.actions);
-
  }
 
 //
@@ -140,7 +149,19 @@ function sentiment()
 function changeResult(text)
 {
    document.getElementById("result").innerHTML = text;
+
+   /*
+   document.getElementById("result").innerHTML = "";
+   var words = text.split(" ");
+   for(var i = 0 ; i < words.length; i++)
+   {
+      
+      setTimeout(() => { document.getElementById("result").innerHTML += words[0];console.log(words[0]) }, i*100);
+   }
+   */
+
 }
+
 
 //Evènement on click
 document.addEventListener('click', function (event) {
@@ -179,6 +200,10 @@ document.addEventListener('click', function (event) {
 
    if(event.target.matches("#pale")){
       changeResult(personnage()+" "+action()+" "+lieu()+" "+evenement()+".");
+   }
+
+   if(event.target.matches("#psale")){
+      changeResult(personnage()+" "+sentiment()+" "+action()+" "+lieu()+" "+evenement()+".");
    }
 
 }, false);
